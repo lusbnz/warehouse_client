@@ -7,6 +7,30 @@ import { processedStores, locations, processedInventory } from '@/lib/mock-data'
 import { MultiSelect } from '@/components/filters/multi-select';
 import { ChartCard } from '@/components/dashboard/chart-card';
 
+
+interface StoreLocationData {
+  location: string;
+  count: number;
+}
+
+interface InventoryByStoreData {
+  store: string;
+  quantity: number;
+}
+
+interface StorePerformanceData {
+  store: string;
+  inventory: number;
+  age: number;
+  location: string;
+}
+
+interface StoreMetrics {
+  storesByLocation: StoreLocationData[];
+  inventoryByStore: InventoryByStoreData[];
+  performanceData: StorePerformanceData[];
+}
+
 export function Stores() {
   const {
     filter,
@@ -100,7 +124,7 @@ export function Stores() {
       inventoryByStore,
       performanceData,
     };
-  }, [filteredData]);
+  }, [filteredData]) as StoreMetrics;
 
   return (
     <div className="space-y-6">

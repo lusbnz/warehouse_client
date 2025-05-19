@@ -24,21 +24,23 @@ import {
 
 type ChartType = 'line' | 'bar' | 'area' | 'pie';
 
-interface ChartCardProps {
+interface YKey<T> {
+  key: keyof T;
+  name: string;
+  color: string;
+}
+
+interface ChartCardProps<T> {
   title: string;
   description?: string;
   type: ChartType;
-  data: string[];
-  xKey: string;
-  yKeys: {
-    key: string;
-    name: string;
-    color: string;
-  }[];
+  data: T[];
+  xKey: keyof T;
+  yKeys: YKey<T>[];
   aspect?: number;
 }
 
-export function ChartCard({
+export function ChartCard<T>({
   title,
   description,
   type,
@@ -46,7 +48,7 @@ export function ChartCard({
   xKey,
   yKeys,
   aspect = 2,
-}: ChartCardProps) {
+}: ChartCardProps<T>) {
   const renderChart = () => {
     switch (type) {
       case 'line':
@@ -54,7 +56,7 @@ export function ChartCard({
           <ResponsiveContainer width="100%" aspect={aspect}>
             <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey={xKey} />
+              <XAxis dataKey={xKey as string} />
               <YAxis />
               <Tooltip />
               <Legend />
@@ -62,7 +64,7 @@ export function ChartCard({
                 <Line
                   key={idx}
                   type="monotone"
-                  dataKey={yKey.key}
+                  dataKey={yKey.key as string}
                   name={yKey.name}
                   stroke={yKey.color}
                   activeDot={{ r: 8 }}
@@ -76,14 +78,14 @@ export function ChartCard({
           <ResponsiveContainer width="100%" aspect={aspect}>
             <BarChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey={xKey} />
+              <XAxis dataKey={xKey as string} />
               <YAxis />
               <Tooltip />
               <Legend />
               {yKeys.map((yKey, idx) => (
                 <Bar
                   key={idx}
-                  dataKey={yKey.key}
+                  dataKey={yKey.key as string}
                   name={yKey.name}
                   fill={yKey.color}
                 />
@@ -96,7 +98,7 @@ export function ChartCard({
           <ResponsiveContainer width="100%" aspect={aspect}>
             <AreaChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey={xKey} />
+              <XAxis dataKey={xKey as string} />
               <YAxis />
               <Tooltip />
               <Legend />
@@ -104,7 +106,7 @@ export function ChartCard({
                 <Area
                   key={idx}
                   type="monotone"
-                  dataKey={yKey.key}
+                  dataKey={yKey.key as string}
                   name={yKey.name}
                   fill={yKey.color}
                   stroke={yKey.color}
@@ -119,8 +121,8 @@ export function ChartCard({
             <PieChart>
               <Pie
                 data={data}
-                dataKey={yKeys[0].key}
-                nameKey={xKey}
+                dataKey={yKeys[0].key as string}
+                nameKey={xKey as string}
                 cx="50%"
                 cy="50%"
                 outerRadius={80}
