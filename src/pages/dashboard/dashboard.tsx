@@ -1,21 +1,17 @@
-import React from 'react';
-import { DollarSign as Dollar, Users, ShoppingBag, Store, Activity } from 'lucide-react';
+import { DollarSign as Dollar, Users, ShoppingBag, Store } from 'lucide-react';
 import { StatCard } from '@/components/dashboard/stat-card';
 import { ChartCard } from '@/components/dashboard/chart-card';
 import { FilterBar } from '@/components/filters/filter-bar';
 import { useFilter } from '@/hooks/use-filter';
 import { getDashboardSummary } from '@/lib/mock-data';
 import { MultiSelect } from '@/components/filters/multi-select';
-import { locations, customers, products, stores } from '@/lib/mock-data';
+import { locations } from '@/lib/mock-data';
 
 export function Dashboard() {
   const { 
     filter, 
     updateDateRange, 
     updateLocations, 
-    updateCustomers,
-    updateProducts,
-    updateStores,
     updateTimeGranularity,
     resetFilters 
   } = useFilter();

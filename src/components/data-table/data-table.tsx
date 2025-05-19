@@ -42,7 +42,6 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
-  filterKey,
   searchPlaceholder = 'Search...',
   pageSize = 10,
   className,

@@ -3,7 +3,7 @@ import { FilterBar } from '@/components/filters/filter-bar';
 import { useFilter } from '@/hooks/use-filter';
 import { DataTable } from '@/components/data-table/data-table';
 import { storeColumns } from '@/components/data-table/columns';
-import { processedStores, locations, processedInventory, processedOrders } from '@/lib/mock-data';
+import { processedStores, locations, processedInventory } from '@/lib/mock-data';
 import { MultiSelect } from '@/components/filters/multi-select';
 import { ChartCard } from '@/components/dashboard/chart-card';
 
@@ -39,7 +39,7 @@ export function Stores() {
     const locationMap = new Map();
     filteredData.forEach(store => {
       const locationCode = store.Ma_TP;
-      const locationName = store.location ? store.location.Ten_TP : locationCode;
+      // const locationName = store.location ? store.location.Ten_TP : locationCode;
       
       if (locationMap.has(locationCode)) {
         locationMap.set(locationCode, locationMap.get(locationCode) + 1);

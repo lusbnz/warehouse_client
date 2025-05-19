@@ -7,7 +7,6 @@ import {
   ShoppingCart,
   Users,
   Store,
-  LogOut,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -128,14 +127,6 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           ) : (
             <span>Collapse</span>
           )}
-        </Button>
-        <Button
-          variant="outline"
-          size={collapsed ? 'icon' : 'default'}
-          className="w-full justify-start"
-        >
-          <LogOut className="h-5 w-5" />
-          {!collapsed && <span className="ml-2">Logout</span>}
         </Button>
       </div>
     </div>

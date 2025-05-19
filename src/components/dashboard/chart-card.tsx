@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Card,
   CardContent,
@@ -29,7 +28,7 @@ interface ChartCardProps {
   title: string;
   description?: string;
   type: ChartType;
-  data: any[];
+  data: string[];
   xKey: string;
   yKeys: {
     key: string;
